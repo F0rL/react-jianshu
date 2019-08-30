@@ -1,5 +1,15 @@
-import React from 'react';
+import React, {Fragment} from 'react';
 import ReactDOM from 'react-dom';
 import App from './App';
+import GlobalStyle from './css-reset.js'
 
-ReactDOM.render(<App />, document.getElementById('root'));
+const Root = () => {
+  return (
+    <Fragment>
+      <App/>
+      <GlobalStyle/>
+    </Fragment>
+  )
+};
+
+ReactDOM.render(<Root/>, document.getElementById('root'));
