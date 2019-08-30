@@ -1,5 +1,5 @@
 import styled from 'styled-components'
-import logoPng from '../statics/logo.png'
+import logoPng from '../../statics/logo.png'
 
 export const HeaderWrapper = styled.div`
   position: relative;
