@@ -4,7 +4,7 @@ import logoPng from '../statics/logo.png'
 export const HeaderWrapper = styled.div`
   position: relative;
   height: 57px;
-  min-width: 980px;
+  min-width: 1100px;
   border-bottom: 1px solid #f0f0f0;
 `
 export const Logo = styled.a.attrs({
@@ -44,18 +44,6 @@ export const NavItem = styled.div`
 export const SearchWrapper = styled.div`
   position: relative;
   float: left;
-  .slide-enter {
-    transition: all .3s ease-out;
-  }
-  .slide-enter-active {
-    width: 240px;
-  }
-  .slide-exit {
-    transition: all .3s ease-out;
-  }
-  .slide-exit-active {
-    width: 160px;
-  }
   .iconfont {
     position: absolute;
     right: 0;
@@ -89,6 +77,18 @@ export const SearchWrapper = styled.div`
   }
   &.focused {
     width: 240px;
+  }
+  &.slide-enter {
+    transition: all .3s ease-out;
+  }
+  &.slide-enter-active {
+    width: 240px;
+  }
+  &.slide-exit {
+    transition: all .3s ease-out;
+  }
+  &.slide-exit-active {
+    width: 160px;
   }
 `
 export const Addition = styled.div`
