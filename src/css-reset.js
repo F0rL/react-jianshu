@@ -14,35 +14,36 @@ const GlobalStyle = createGlobalStyle`
   figure, figcaption, footer, header, hgroup, 
   menu, nav, output, ruby, section, summary,
   time, mark, audio, video {
-  \tmargin: 0;
-  \tpadding: 0;
-  \tborder: 0;
-  \tfont-size: 100%;
-  \tfont: inherit;
-  \tvertical-align: baseline;
+    margin: 0;
+    padding: 0;
+    border: 0;
+    font-size: 100%;
+    font: inherit;
+    vertical-align: baseline;
+    box-sizing: border-box;
   }
   /* HTML5 display-role reset for older browsers */
   article, aside, details, figcaption, figure, 
   footer, header, hgroup, menu, nav, section {
-  \tdisplay: block;
+  display: block;
   }
   body {
-  \tline-height: 1;
+  line-height: 1;
   }
   ol, ul {
-  \tlist-style: none;
+  list-style: none;
   }
   blockquote, q {
-  \tquotes: none;
+  quotes: none;
   }
   blockquote:before, blockquote:after,
   q:before, q:after {
-  \tcontent: '';
-  \tcontent: none;
+  content: '';
+  content: none;
   }
   table {
-  \tborder-collapse: collapse;
-  \tborder-spacing: 0;
+  border-collapse: collapse;
+  border-spacing: 0;
   }
 `;
 
