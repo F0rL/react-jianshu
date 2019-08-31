@@ -21,18 +21,31 @@ import {
 
 class Header extends Component {
   getListArea() {
-    const { focused, list } = this.props;
-    if (focused) {
+    const { focused, list, currentPage, totalPage, mouseIn, handleMouseEnter, handleMouseLeave, handlePageChange } = this.props;
+    const newList = list.toJS()
+    const pageList = []
+    if(newList.length) {
+      for(let i = (currentPage-1) * 10; i < currentPage * 10; i++) {
+        pageList.push(
+          <SearchInfoItem key={newList[i]}>{newList[i]}</SearchInfoItem>
+        )
+      }
+    }
+    if (focused || mouseIn) {
       return (
-        <SearchInfo>
+        <SearchInfo 
+          onMouseEnter={handleMouseEnter}
+          onMouseLeave={handleMouseLeave}
+        >
           <SearchInfoTitle>
             热门搜索
-            <SearchInfoSwitch>换一批</SearchInfoSwitch>
+            <SearchInfoSwitch onClick={()=>handlePageChange(currentPage, totalPage, this.spinIcon)}>
+              <i ref={(icon)=>{this.spinIcon = icon}} className="iconfont spin">&#xe851;</i>
+              换一批
+            </SearchInfoSwitch>
           </SearchInfoTitle>
           <SearchInfoList>
-            {list.map(item => {
-              return <SearchInfoItem key={item}>{item}</SearchInfoItem>;
-            })}
+            {pageList}
           </SearchInfoList>
         </SearchInfo>
       );
@@ -62,7 +75,7 @@ class Header extends Component {
                 onBlur={handleInputFocus}
               />
             </CSSTransition>
-            <i className={focused ? "focused iconfont" : "iconfont"}>
+            <i className={focused ? "focused iconfont zoom" : "iconfont zoom"}>
               &#xe663;
             </i>
             {this.getListArea()}
@@ -137,12 +150,16 @@ class Header extends Component {
 //     </HeaderWrapper>
 //   );
 // };
+
 const mapStateToProps = state => {
   return {
     focused: state.getIn(["HeaderReducer", "focused"]),
     //上面与下面等价
     //focused: state.get('HeaderReducer').get('focused')
-    list: state.getIn(["HeaderReducer", "list"])
+    list: state.getIn(["HeaderReducer", "list"]),
+    currentPage: state.getIn(["HeaderReducer", "currentPage"]),
+    totalPage: state.getIn(["HeaderReducer", "totalPage"]),
+    mouseIn: state.getIn(["HeaderReducer", "mouseIn"]),
   };
 };
 const mapDispatchToProps = dispatch => {
@@ -150,6 +167,24 @@ const mapDispatchToProps = dispatch => {
     handleInputFocus() {
       dispatch(actionCreators.getList());
       dispatch(actionCreators.searchFocus());
+    },
+    handleMouseEnter() {
+      dispatch(actionCreators.mouseEnter())
+    },
+    handleMouseLeave() {
+      dispatch(actionCreators.mouseLeave())
+    },
+    handlePageChange(currentPage, totalPage, spinIcon) {
+      let originAngle = spinIcon.style.transform.replace(/\D/g, '')
+      if (originAngle) {
+        originAngle = parseInt(originAngle, 10)
+      }else {
+        originAngle = 0
+      }
+      console.log(originAngle)
+      spinIcon.style.transform = `rotate(${originAngle+360}deg)`
+      let newCurrentPage = currentPage === totalPage ? 1 : currentPage + 1
+      dispatch(actionCreators.pageChange(newCurrentPage))
     }
   };
 };
