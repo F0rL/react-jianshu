@@ -9,10 +9,39 @@ import {
   Nav,
   NavItem,
   SearchWrapper,
+  SearchInfo,
+  SearchInfoTitle,
+  SearchInfoSwitch,
+  SearchInfoList,
+  SearchInfoItem,
   NavSearch,
   Addition,
   Button
 } from "./style";
+
+const getListArea = show => {
+  if (show) {
+    return (
+      <SearchInfo>
+        <SearchInfoTitle>
+          热门搜索
+          <SearchInfoSwitch>换一批</SearchInfoSwitch>
+        </SearchInfoTitle>
+        <SearchInfoList>
+          <SearchInfoItem>教育</SearchInfoItem>
+          <SearchInfoItem>教育</SearchInfoItem>
+          <SearchInfoItem>教育</SearchInfoItem>
+          <SearchInfoItem>教育</SearchInfoItem>
+          <SearchInfoItem>教育</SearchInfoItem>
+          <SearchInfoItem>教育</SearchInfoItem>
+          <SearchInfoItem>教育</SearchInfoItem>
+          <SearchInfoItem>教育</SearchInfoItem>
+        </SearchInfoList>
+      </SearchInfo>
+    );
+  } else {
+  }
+};
 
 const Header = props => {
   return (
@@ -36,6 +65,7 @@ const Header = props => {
           <i className={props.focused ? "focused iconfont" : "iconfont"}>
             &#xe663;
           </i>
+          {getListArea(props.focused)}
         </SearchWrapper>
       </Nav>
       <Addition>
@@ -49,7 +79,7 @@ const Header = props => {
 };
 const mapStateToProps = state => {
   return {
-    focused: state.getIn(['HeaderReducer', 'focused'])
+    focused: state.getIn(["HeaderReducer", "focused"])
     //上面与下面等价
     //focused: state.get('HeaderReducer').get('focused')
   };

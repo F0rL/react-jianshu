@@ -1,4 +1,4 @@
-import {createGlobalStyle} from 'styled-components'
+import { createGlobalStyle } from "styled-components";
 
 const GlobalStyle = createGlobalStyle`
   html, body, div, span, applet, object, iframe,
@@ -20,7 +20,6 @@ const GlobalStyle = createGlobalStyle`
     font-size: 100%;
     font: inherit;
     vertical-align: baseline;
-    box-sizing: border-box;
     font-family: -apple-system,SF UI Text,Arial,PingFang SC,Hiragino Sans GB,Microsoft YaHei,WenQuanYi Micro Hei,sans-serif;
   }
   /* HTML5 display-role reset for older browsers */
@@ -46,6 +45,9 @@ const GlobalStyle = createGlobalStyle`
   border-collapse: collapse;
   border-spacing: 0;
   }
+  * {
+    box-sizing: border-box;
+  }
 `;
 
-export default GlobalStyle
+export default GlobalStyle;
