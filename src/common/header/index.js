@@ -49,7 +49,9 @@ const Header = props => {
 };
 const mapStateToProps = state => {
   return {
-    focused: state.HeaderReducer.get('focused')
+    focused: state.getIn(['HeaderReducer', 'focused'])
+    //上面与下面等价
+    //focused: state.get('HeaderReducer').get('focused')
   };
 };
 const mapDispatchToProps = dispatch => {
