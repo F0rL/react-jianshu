@@ -1,9 +1,10 @@
-import React, { Component } from "react";
+import React, { PureComponent } from "react";
 import { ListItem, ListWrapper, LoadMore } from "../style";
 import { connect } from "react-redux";
 import { actionCreators } from "../store";
+import {Link} from 'react-router-dom'
 
-class List extends Component {
+class List extends PureComponent {
   render() {
     const { list, getMoreList,  articlePage} = this.props;
     return (
@@ -12,7 +13,7 @@ class List extends Component {
           return (
             <ListItem key={index}>
               <div className="content">
-                <a href="/">{item.get("title")}</a>
+                <Link to="/detail">{item.get("title")}</Link>
                 <p className="abstract">{item.get("desc")}</p>
               </div>
               <a className="imgWrapper" href="/">
