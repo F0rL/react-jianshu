@@ -8,10 +8,10 @@ import { fromJS } from "immutable";
 //   data: fromJS(data)
 // });
 const changeHomeData = result => ({
-  type: constants.CHANGE_HOME_DATA, 
-  topicList: result.topicList, 
-  articleList: result.articleList, 
-  recommendList: result.recommendList,
+  type: constants.CHANGE_HOME_DATA,
+  topicList: result.topicList,
+  articleList: result.articleList,
+  recommendList: result.recommendList
 });
 
 const addHomeList = (result, nextPage) => ({
@@ -30,12 +30,16 @@ export const getHomeData = () => {
   };
 };
 
-export const getMoreList = (articlePage) => {
+export const getMoreList = articlePage => {
   return dispatch => {
     axios.get(`api/homeList.json?page=${articlePage}`).then(res => {
       const result = res.data.data;
-      const action = addHomeList(result,articlePage+1);
+      const action = addHomeList(result, articlePage + 1);
       dispatch(action);
     });
   };
+};
+
+export const toggleTopShow = show => {
+  return { type: constants.TOGGLE_SCROLL_TOP, showScrollToTop: show };
 };
