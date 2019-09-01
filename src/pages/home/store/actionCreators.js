@@ -1,6 +1,6 @@
 import * as constants from "./constants";
 import axios from "axios";
-// import { fromJS } from "immutable";
+import { fromJS } from "immutable";
 
 //转换数组为immutable数组
 // const changeList = data => ({
@@ -14,11 +14,27 @@ const changeHomeData = result => ({
   recommendList: result.recommendList,
 });
 
+const addHomeList = (result, nextPage) => ({
+  type: constants.ADD_HOME_LIST,
+  articleList: fromJS(result),
+  nextPage
+});
+
 export const getHomeData = () => {
   return dispatch => {
     axios.get("api/home.json").then(res => {
       const result = res.data.data;
-      const action = changeHomeData(result)
+      const action = changeHomeData(result);
+      dispatch(action);
+    });
+  };
+};
+
+export const getMoreList = (articlePage) => {
+  return dispatch => {
+    axios.get(`api/homeList.json?page=${articlePage}`).then(res => {
+      const result = res.data.data;
+      const action = addHomeList(result,articlePage+1);
       dispatch(action);
     });
   };

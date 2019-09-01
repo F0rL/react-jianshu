@@ -37,7 +37,9 @@ export const TopicItem = styled.div`
     padding: 0 10px;
   }
 `;
-export const ListWrapper = styled.div``;
+export const ListWrapper = styled.div`
+
+`;
 export const ListItem = styled.div`
   display: flex;
   justify-content: space-between;
@@ -69,6 +71,15 @@ export const ListItem = styled.div`
       height: 100px;
     }
   }
+`;
+export const LoadMore = styled.div`
+  width: 100%;
+  height: 40px;
+  line-height: 40px;
+  background: #a5a5a5;
+  text-align: center;
+  border-radius: 20px;
+  cursor: pointer;
 `;
 export const ListInfo = styled.div``;
 export const HomeRight = styled.div`
