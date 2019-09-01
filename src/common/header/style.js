@@ -29,6 +29,7 @@ export const NavItem = styled.div`
   padding: 0 15px;
   font-size: 17px;
   color: #333;
+  cursor: pointer;
   &.left {
     float: left;
   }
@@ -109,6 +110,7 @@ export const SearchInfoTitle = styled.div`
 export const SearchInfoSwitch = styled.span`
   float: right;
   font-size: 13px;
+  cursor: pointer;
   .spin {
     display: block;
     float: left;
@@ -132,7 +134,7 @@ export const SearchInfoItem = styled.a`
   border: 1px solid #ddd;
   color: #787878;
   border-radius: 3px;
-
+  cursor: pointer;
 `
 export const Addition = styled.div`
   position: absolute;
@@ -148,6 +150,7 @@ export const Button = styled.div`
   padding: 0 20px;
   border-radius: 20px;
   border: 1px solid #ec6149;
+  cursor: pointer;
   &.reg {
     color: #ec6149;
   }
