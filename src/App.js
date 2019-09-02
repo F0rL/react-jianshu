@@ -12,10 +12,10 @@ const App = () => {
     <Provider store={store}>
       <BrowserRouter>
         <Header />
-        <div>
+        <React.Fragment>
           <Route path="/" exact component={Home} />
           <Route path="/detail" exact component={Detail} />
-        </div>
+        </React.Fragment>
       </BrowserRouter>
     </Provider>
   );
