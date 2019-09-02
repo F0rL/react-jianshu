@@ -6,6 +6,7 @@ import Header from "./common/header";
 
 import Home from "./pages/home";
 import Detail from "./pages/detail";
+import Login from "./pages/login";
 
 const App = () => {
   return (
@@ -14,6 +15,7 @@ const App = () => {
         <Header />
         <React.Fragment>
           <Route path="/" exact component={Home} />
+          <Route path="/login" exact component={Login} />
           <Route path="/detail/:id" exact component={Detail} />
         </React.Fragment>
       </BrowserRouter>

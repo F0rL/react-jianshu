@@ -3,6 +3,7 @@ import { CSSTransition } from "react-transition-group";
 import { connect } from "react-redux";
 import { actionCreators } from "./store";
 import { Link } from "react-router-dom";
+import {actionCreators as LoginActionCreators} from '../../pages/login/store'
 
 import {
   HeaderWrapper,
@@ -71,7 +72,7 @@ class Header extends Component {
     }
   }
   render() {
-    const { focused, handleInputFocus, list } = this.props;
+    const { focused, handleInputFocus, list, isLogin, logout } = this.props;
     return (
       <HeaderWrapper>
         <Link to="/">
@@ -80,7 +81,11 @@ class Header extends Component {
         <Nav>
           <NavItem className="left active">首页</NavItem>
           <NavItem className="left">下载App</NavItem>
-          <NavItem className="right">登录</NavItem>
+          {isLogin ? (
+            <NavItem className="right" onClick={logout}>退出</NavItem>
+          ) : (
+            <Link to="login"><NavItem className="right">登录</NavItem></Link>
+          )}
           <NavItem className="right">
             <i className="iconfont">&#xe636;</i>
           </NavItem>
@@ -102,7 +107,7 @@ class Header extends Component {
           <Button className="writting">
             <i className="iconfont">&#xe600;</i>写文章
           </Button>
-          <Button className="reg">注册</Button>
+          {isLogin ? null : <Button className="reg">注册</Button>}
         </Addition>
       </HeaderWrapper>
     );
@@ -176,7 +181,8 @@ const mapStateToProps = state => {
     list: state.getIn(["HeaderReducer", "list"]),
     currentPage: state.getIn(["HeaderReducer", "currentPage"]),
     totalPage: state.getIn(["HeaderReducer", "totalPage"]),
-    mouseIn: state.getIn(["HeaderReducer", "mouseIn"])
+    mouseIn: state.getIn(["HeaderReducer", "mouseIn"]),
+    isLogin: state.getIn(["Login", "isLogin"])
   };
 };
 const mapDispatchToProps = dispatch => {
@@ -202,6 +208,9 @@ const mapDispatchToProps = dispatch => {
       spinIcon.style.transform = `rotate(${originAngle + 360}deg)`;
       let newCurrentPage = currentPage === totalPage ? 1 : currentPage + 1;
       dispatch(actionCreators.pageChange(newCurrentPage));
+    },
+    logout() {
+      dispatch(LoginActionCreators.logout())
     }
   };
 };
