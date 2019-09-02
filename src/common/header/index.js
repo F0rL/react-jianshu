@@ -84,7 +84,7 @@ class Header extends Component {
           {isLogin ? (
             <NavItem className="right" onClick={logout}>退出</NavItem>
           ) : (
-            <Link to="login"><NavItem className="right">登录</NavItem></Link>
+            <Link to="/login"><NavItem className="right">登录</NavItem></Link>
           )}
           <NavItem className="right">
             <i className="iconfont">&#xe636;</i>
@@ -104,10 +104,12 @@ class Header extends Component {
           </SearchWrapper>
         </Nav>
         <Addition>
-          <Button className="writting">
-            <i className="iconfont">&#xe600;</i>写文章
-          </Button>
-          {isLogin ? null : <Button className="reg">注册</Button>}
+          <Link to="/write">
+            <Button className="writting">
+              <i className="iconfont">&#xe600;</i>写文章
+            </Button>
+          </Link>
+          {isLogin ? '' : (<Button className="reg">注册</Button>)}
         </Addition>
       </HeaderWrapper>
     );
