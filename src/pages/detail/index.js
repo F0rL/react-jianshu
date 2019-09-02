@@ -14,7 +14,7 @@ import {
 
 class Detail extends Component {
   componentDidMount() {
-    this.props.getDetailData();
+    this.props.getDetailData(this.props.match.params.id);
   }
   render() {
     return (
@@ -40,8 +40,8 @@ const mapState = state => ({
   content: state.getIn(["Detail", "content"])
 });
 const mapDispatch = dispatch => ({
-  getDetailData() {
-    dispatch(actionCreators.getDetailData());
+  getDetailData(id) {
+    dispatch(actionCreators.getDetailData(id));
   }
 });
 export default connect(

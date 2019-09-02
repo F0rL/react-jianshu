@@ -13,7 +13,7 @@ class List extends PureComponent {
           return (
             <ListItem key={index}>
               <div className="content">
-                <Link to="/detail">{item.get("title")}</Link>
+                <Link to={`/detail/${item.get("id")}`}>{item.get("title")}</Link>
                 <p className="abstract">{item.get("desc")}</p>
               </div>
               <a className="imgWrapper" href="/">
